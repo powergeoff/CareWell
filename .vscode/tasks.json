@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "backend build",
+      "type": "shell",
+      "command": "dotnet build",
+      "options": {
+        "cwd": "${workspaceRoot}/CareWell.Back"
+      }
+    },
+    {
+      "label": "backend dev",
+      "type": "shell",
+      "command": "dotnet watch run --urls http://localhost:5000/",
+      "options": {
+        "cwd": "${workspaceRoot}/CareWell.Back",
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "local",
+          "DOTNET_WATCH_SUPPRESS_STATIC_FILE_HANDLING": "true"
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev"
+      }
+    },
+    {
+      "label": "frontend dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceRoot}/CareWell.Front"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev"
+      }
+    }
+  ]
+}

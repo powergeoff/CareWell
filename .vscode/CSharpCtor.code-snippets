@@ -1,0 +1,13 @@
+{
+  "CSharp_Class": {
+    "prefix": "cs_ctor",
+    "scope": "csharp",
+    "body": [
+      "public ${TM_FILENAME_BASE}()",
+      "{",
+      "    $0",
+      "}",
+    ],
+    "description": "csharp ctor snippet"
+  }
+}

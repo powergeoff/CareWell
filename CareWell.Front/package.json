@@ -1,0 +1,73 @@
+{
+  "name": "care-well",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "once": "cross-env NODE_ENV=development webpack --progress",
+    "dev": "cross-env NODE_ENV=development webpack --watch --progress",
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "analyze": "cross-env NODE_ENV=production analyze=yes webpack --progress"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "3.4.0",
+    "@fluentui/react": "8.110.14",
+    "@fontsource/open-sans": "4.5.2",
+    "@fontsource/roboto": "4.5.3",
+    "@fontsource/roboto-slab": "4.5.1",
+    "axios": "0.24.0",
+    "clsx": "1.1.1",
+    "core-js": "3.19.1",
+    "date-fns": "2.26.0",
+    "history": "5.2.0",
+    "lodash": "4.17.21",
+    "normalize.css": "8.0.1",
+    "query-string": "7.0.1",
+    "react": "18.2.0",
+    "react-apiloader": "2.0.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1",
+    "react-router-dom": "5.3.0",
+    "web-vitals": "2.1.4",
+    "yup": "0.32.11"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "devDependencies": {
+    "@types/lodash": "4.14.177",
+    "@types/node": "16.18.40",
+    "@types/react": "17.0.36",
+    "@types/react-dom": "18.2.0",
+    "@types/react-router-dom": "5.3.2",
+    "@types/yup": "0.29.13",
+    "@typescript-eslint/eslint-plugin": "5.10.0",
+    "@typescript-eslint/parser": "5.10.0",
+    "copy-webpack-plugin": "10.0.0",
+    "cross-env": "7.0.3",
+    "css-loader": "6.6.0",
+    "css-minimizer-webpack-plugin": "3.1.4",
+    "eslint": "8.7.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-promise": "6.0.0",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "file-loader": "6.2.0",
+    "fork-ts-checker-webpack-plugin": "6.4.0",
+    "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "2.4.5",
+    "prettier": "2.4.1",
+    "prettier-loader": "3.3.0",
+    "ts-loader": "9.2.6",
+    "typescript": "4.9.5",
+    "url-loader": "4.1.1",
+    "webpack": "5.88.2",
+    "webpack-bundle-analyzer": "4.5.0",
+    "webpack-cli": "5.1.4"
+  }
+}
+

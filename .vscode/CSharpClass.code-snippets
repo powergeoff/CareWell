@@ -1,0 +1,15 @@
+{
+  "CSharp_Class": {
+    "prefix": "cs_class",
+    "scope": "csharp",
+    "body": [
+      "namespace ${TM_DIRECTORY/.*?CareWell([\\.\\\\](\\w+))?([\\.\\\\](\\w+))?([\\.\\\\](\\w+))?([\\.\\\\](\\w+))?([\\.\\\\](\\w+))?/CareWell.$2.$4.$6.$8.$10/g}$1;",
+      "",
+      "public class ${TM_FILENAME_BASE}",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "csharp class snippet"
+  }
+}
