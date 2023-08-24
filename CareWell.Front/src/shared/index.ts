@@ -3,6 +3,7 @@ export { T } from './t';
 export { LoadingButton } from './loadingButton';
 export { RepeatPanel } from './repeatPanel';
 export { DefaultCard } from './defaultCard';
+export { DefaultPage } from './defaultPage';
 export { SingleSelect } from './singleSelect';
 export { DatePicker } from './datePicker';
 export { ChoiceGroup } from './choiceGroup';

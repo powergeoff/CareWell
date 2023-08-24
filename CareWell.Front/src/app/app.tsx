@@ -3,6 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { asyncComponent } from '@/core/asyncComponent';
 
+const HomePage = asyncComponent(() => import('./common/homePage').then((x) => x.HomePage));
+
 const HomeAddressIndex = asyncComponent(() =>
   import('./home-address').then((x) => x.HomeAddressIndex)
 );
@@ -11,9 +13,10 @@ const ThemePage = asyncComponent(() => import('./common/themePage').then((x) => 
 export const App: React.FC = () => {
   return (
     <Switch>
-      <Route path="/theme" component={ThemePage} />
       <Route path="/homeAddress" component={HomeAddressIndex} />
-      <Redirect to="/homeAddress"></Redirect>
+      <Route path="/theme" component={ThemePage} />
+      <Route path="/" component={HomePage} />
+      <Redirect to="/"></Redirect>
     </Switch>
   );
 };
