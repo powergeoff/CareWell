@@ -15,6 +15,7 @@ import { LoadingButton, Button, T } from '@/shared';
 import { ButtonsPanel } from '@/shared/buttonsPanel';
 import { InputTopLabel } from '@/shared/inputTopLabel';
 import { appTheme } from '@/theme';
+//import { useHistory } from 'react-router-dom';
 
 const classes = mergeStyleSets({
   control: {
@@ -36,8 +37,12 @@ const addressValidateSchema = yup.object().shape({
 });
 
 //?epicParameters=KGHRXREZBMBCBAKI9NvuCt6%2BV7pl0DQHgSnD8%2BtR5qjExO0oKl6uTyb6YmSilJTIh5DApLa31wwvGoubVPlG8XiifO5MRxOMZMC4um15BdpXWFvkkB1n9MxcPUpj9OVRWTCeuMyuU9Z%2BD6RDFFJJZrY6STIobU96DdzivFjN08EF2Kd7KnFFjGyOiR4%3D
-
-export const HomeAddressPage: React.FC = () => {
+interface Props {
+  counter: number;
+  setCounter: (type: string) => void;
+}
+export const HomeAddressPage: React.FC<Props> = ({ counter, setCounter }) => {
+  //const history = useHistory();
   const [{ epicParameters }] = useLocationParams<{ epicParameters: string }>();
   const [homeAddress, getHomeAddressApi] = useGetLastHomeAddress();
 
@@ -50,6 +55,7 @@ export const HomeAddressPage: React.FC = () => {
   });
 
   useEffect(() => {
+    //if state prop is null, go get it from the server
     void getHomeAddressApi({ epicParameters }).catch((e) => console.error(e));
   }, [getHomeAddressApi, epicParameters]);
 
@@ -69,6 +75,13 @@ export const HomeAddressPage: React.FC = () => {
     addressValidateSchema
       .validate(form)
       .then(() => getValidAddress(form))
+      .then((x) => {
+        /* if (x.isSuccess) {
+          
+          history.push('/homeAddress/save');
+        } */
+        return;
+      })
       .catch((e: Error) => {
         setValidateAddressMessages(e.message);
       });
@@ -96,6 +109,8 @@ export const HomeAddressPage: React.FC = () => {
       <T block size="l">
         Add Your Primary Home Address
       </T>
+      <button onClick={() => setCounter('add')}>SetCounter</button>
+      <>Counter: {counter}</>
       <Stack>
         <Stack horizontal wrap tokens={{ childrenGap: appTheme.spacing.m }}>
           <InputTopLabel
