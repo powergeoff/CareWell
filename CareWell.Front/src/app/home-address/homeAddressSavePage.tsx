@@ -1,11 +1,17 @@
 import React from 'react';
-import { useValidateHomeAddress } from '@/api/homeAddressApi';
-import { useValidatedAddress } from '@/global/useValidatedAddress';
+import { Link } from 'react-router-dom';
 
-export const HomeAddressSavePage: React.FC = () => {
-  const myAtom = useValidatedAddress();
-  console.log(myAtom[1]);
-  const [validAddress] = useValidateHomeAddress();
-  console.log(validAddress?.address);
-  return <>Hello Save Page</>;
+interface Props {
+  counter: number;
+  setCounter: (type: string) => void;
+}
+export const HomeAddressSavePage: React.FC<Props> = ({ counter, setCounter }) => {
+  return (
+    <>
+      Hello Save Page
+      <button onClick={() => setCounter('add')}>SetCounter</button>
+      <>Counter: {counter}</>
+      <Link to={{ pathname: '/homeAddress/verify' }}>Verify</Link>
+    </>
+  );
 };
