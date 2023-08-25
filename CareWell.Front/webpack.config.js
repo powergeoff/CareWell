@@ -71,14 +71,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'public/assets',
-          to: 'assets',
-        },
-      ],
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css?[contenthash]',
       chunkFilename: '[id].css?[contenthash]',

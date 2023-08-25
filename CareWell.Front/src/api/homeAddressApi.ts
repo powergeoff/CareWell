@@ -1,4 +1,6 @@
+//import { createApiHookWithAtom } from '@/core/createApiHookWithAtom';
 import { createApiHook, createApiHookWithState } from '@/core/loader';
+//import { useValidatedAddress } from '@/global/useValidatedAddress';
 import {
   ValidateAddressRequest,
   ValidatedAddressResponse,
@@ -7,8 +9,8 @@ import {
 
 const baseUrl = 'homeAddress/';
 
-export const useValidateHomeAddress = createApiHook<
-  ValidatedAddressResponse,
+export const useValidateHomeAddress = createApiHookWithState<
+  ValidatedAddressResponse | undefined,
   ValidateAddressRequest
 >((http, params) => {
   const formData = new FormData();
@@ -18,7 +20,7 @@ export const useValidateHomeAddress = createApiHook<
   formData.append('State', params.state);
   formData.append('ZipCode', params.zipCode);
   return http.post(baseUrl + 'validate', formData);
-});
+}, undefined);
 
 export const useGetLastHomeAddress = createApiHookWithState<
   ValidatedAddressResponse | undefined,

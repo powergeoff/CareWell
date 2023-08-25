@@ -10,8 +10,8 @@ import {
 import { media } from '@/core/media';
 import { useLocationParams } from '@/core/router';
 import { useMessages } from '@/core/useMessages';
-import { ValidateAddressRequest, ValidatedAddressResponse } from '@/models/homeAddress';
-import { LoadingButton, Button, T, DefaultCard } from '@/shared';
+import { ValidateAddressRequest } from '@/models/homeAddress';
+import { LoadingButton, Button, T } from '@/shared';
 import { ButtonsPanel } from '@/shared/buttonsPanel';
 import { InputTopLabel } from '@/shared/inputTopLabel';
 import { appTheme } from '@/theme';
@@ -39,7 +39,6 @@ const addressValidateSchema = yup.object().shape({
 
 export const HomeAddressPage: React.FC = () => {
   const [{ epicParameters }] = useLocationParams<{ epicParameters: string }>();
-  const [validAddress, setValidAddress] = useState<ValidatedAddressResponse>();
   const [homeAddress, getHomeAddressApi] = useGetLastHomeAddress();
 
   const [form, setForm] = useState<ValidateAddressRequest>({
@@ -60,7 +59,7 @@ export const HomeAddressPage: React.FC = () => {
     }
   }, [homeAddress]);
 
-  const validateHomeAddress = useValidateHomeAddress();
+  const [validAddress, getValidAddress, setValidAddress] = useValidateHomeAddress();
 
   const [validateAddressMessages, setValidateAddressMessages] = useMessages(
     useValidateHomeAddress.id
@@ -69,18 +68,11 @@ export const HomeAddressPage: React.FC = () => {
   const submitAddressValidationHandler = useCallback(() => {
     addressValidateSchema
       .validate(form)
-      .then(() => validateHomeAddress(form))
-      .then((response) => {
-        if (response.isSuccess) {
-          setValidAddress(response.data);
-        }
-        return response;
-      })
+      .then(() => getValidAddress(form))
       .catch((e: Error) => {
         setValidateAddressMessages(e.message);
-        //void getHomeAddressApi({ epicParameters }); //bad??
       });
-  }, [setValidateAddressMessages, form, validateHomeAddress]);
+  }, [form, getValidAddress, setValidateAddressMessages]);
 
   const submitHomeAddress = useSubmitHomeAddress();
   const [submitAddressMessages, setSubmitAddressMessages] = useMessages(useSubmitHomeAddress.id);
@@ -100,7 +92,7 @@ export const HomeAddressPage: React.FC = () => {
     setValidAddress(undefined);
   };
   return (
-    <DefaultCard variant="info" label="CareWell">
+    <>
       <T block size="l">
         Add Your Primary Home Address
       </T>
@@ -179,6 +171,6 @@ export const HomeAddressPage: React.FC = () => {
           </>
         )}
       </Stack>
-    </DefaultCard>
+    </>
   );
 };

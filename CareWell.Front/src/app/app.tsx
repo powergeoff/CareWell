@@ -15,8 +15,8 @@ export const App: React.FC = () => {
     <Switch>
       <Route path="/homeAddress" component={HomeAddressIndex} />
       <Route path="/theme" component={ThemePage} />
-      <Route path="/" component={HomePage} />
-      <Redirect to="/"></Redirect>
+      <Route path="/home" component={HomePage} />
+      <Redirect to="/home"></Redirect>
     </Switch>
   );
 };

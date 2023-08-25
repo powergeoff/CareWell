@@ -38,13 +38,13 @@ const root = createRoot(container!); // createRoot(container!) if you use TypeSc
 root.render(
   <ThemeProvider theme={appTheme} applyTo="body" className={rootClass}>
     <GlobalStateContext.Provider value={state}>
-    <LoaderContextProvider clientFactory={axiosClientFactory}>
-          <Router>
-    <Suspense fallback={<Spinner label="Loading..." labelPosition="right" />}>
-      <App />
-    </Suspense>
-    </Router>
-        </LoaderContextProvider>
+      <LoaderContextProvider clientFactory={axiosClientFactory}>
+        <Router>
+          <Suspense fallback={<Spinner label="Loading..." labelPosition="right" />}>
+            <App />
+          </Suspense>
+        </Router>
+      </LoaderContextProvider>
     </GlobalStateContext.Provider>
   </ThemeProvider>
 );

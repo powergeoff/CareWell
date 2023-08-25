@@ -1,5 +1,5 @@
-import { parse, stringify } from 'query-string';
-import { useCallback, useMemo, useState } from 'react';
+import { parse } from 'query-string';
+import { useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { DateTime } from '@/utils/dateTime';
@@ -26,7 +26,7 @@ const fromString = (value: string, type?: ConverterType) => {
   }
 };
 
-const toString = (value: unknown, type?: ConverterType) => {
+/* const toString = (value: unknown, type?: ConverterType) => {
   if (value == null || value === '') return undefined;
   switch (type) {
     case 'date':
@@ -35,11 +35,8 @@ const toString = (value: unknown, type?: ConverterType) => {
       return value;
   }
 };
-
-export const useLocationParams = <P>(converterInit?: { [key in keyof P]: ConverterType }): [
-  P,
-  (p: P) => void
-] => {
+ */
+export const useLocationParams = <P>(converterInit?: { [key in keyof P]: ConverterType }): [P] => {
   const history = useHistory();
 
   const [converters] = useState(converterInit);
@@ -58,7 +55,7 @@ export const useLocationParams = <P>(converterInit?: { [key in keyof P]: Convert
     }, {} as Record<string, unknown>);
   }, [converters, history.location.search]);
 
-  const setParams = useCallback(
+  /* const setParams = useCallback(
     (urlParams: P) => {
       const paramsObj = Object.entries(urlParams).reduce((result, [key, value]) => {
         const type = converters?.[key as keyof P];
@@ -73,7 +70,10 @@ export const useLocationParams = <P>(converterInit?: { [key in keyof P]: Convert
       });
     },
     [converters, history]
-  );
+  ); 
+  
+  return [params as unknown as P, setParams ];
+  */
 
-  return [params as unknown as P, setParams];
+  return [params as unknown as P];
 };
